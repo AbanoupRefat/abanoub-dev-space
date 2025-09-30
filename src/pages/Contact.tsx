@@ -1,32 +1,25 @@
-import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Linkedin, Github, MessageCircle } from "lucide-react";
+import { Linkedin, Github, MessageCircle } from "lucide-react";
 
 const Contact = () => {
   const contactMethods = [
     {
-      icon: Mail,
-      label: "Email",
-      value: "abanoub.refaat@example.com",
-      href: "mailto:abanoub.refaat@example.com",
-    },
-    {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "linkedin.com/in/abanoubrefaat",
-      href: "https://linkedin.com/in/abanoubrefaat",
+      value: "linkedin.com/in/abanoubrefat",
+      href: "https://www.linkedin.com/in/abanoubrefat",
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "github.com/abanoubrefaat",
-      href: "https://github.com/abanoubrefaat",
+      value: "github.com/AbanoupRefat",
+      href: "https://github.com/AbanoupRefat",
     },
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      value: "+20 123 456 7890",
-      href: "https://wa.me/201234567890",
+      value: "+20 101 774 7943",
+      href: "https://wa.me/201017747943",
     },
   ];
 
@@ -43,18 +36,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <Card className="rounded-2xl border-border/50 animate-fade-in-up">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
-              <ContactForm />
-            </CardContent>
-          </Card>
-
+        <div className="max-w-3xl mx-auto space-y-8">
           {/* Contact Information */}
-          <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <Card className="rounded-2xl border-border/50">
+          <Card className="rounded-2xl border-border/50 animate-fade-in-up">
               <CardContent className="p-8 space-y-6">
                 <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
                 
@@ -85,7 +69,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-border/50 bg-gradient-to-br from-primary/5 to-accent/5">
+          <Card className="rounded-2xl border-border/50 bg-gradient-to-br from-primary/5 to-accent/5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
               <CardContent className="p-8 space-y-4">
                 <h3 className="text-xl font-bold">Let's Build Something Great</h3>
                 <p className="text-sm text-foreground/70 leading-relaxed">
@@ -95,7 +79,6 @@ const Contact = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
         </div>
       </div>
     </div>

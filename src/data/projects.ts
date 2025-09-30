@@ -2,11 +2,13 @@ export interface Project {
   id: string;
   title: string;
   client: string;
+  clientLogo?: string;
   description: string;
   features: string[];
   techStack: string[];
   category: "desktop" | "web";
   image?: string;
+  images?: string[];
 }
 
 export const projects: Project[] = [

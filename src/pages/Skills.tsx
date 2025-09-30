@@ -45,11 +45,12 @@ const Skills = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     {categorySkills.map((skill, skillIndex) => (
                       <SkillBadge
                         key={skill.name}
                         name={skill.name}
+                        logo={skill.logo}
                         delay={(categoryIndex * 100) + (skillIndex * 50)}
                       />
                     ))}

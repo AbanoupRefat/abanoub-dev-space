@@ -1,6 +1,9 @@
 import { Badge } from "./ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
 import { Project } from "@/data/projects";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
   project: Project;
@@ -16,9 +19,18 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <CardTitle className="text-xl mb-2">{project.title}</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">
-              {project.client}
-            </CardDescription>
+            <div className="flex items-center gap-2">
+              {project.clientLogo && (
+                <img 
+                  src={project.clientLogo} 
+                  alt={project.client}
+                  className="w-6 h-6 object-contain"
+                />
+              )}
+              <CardDescription className="text-sm text-muted-foreground">
+                {project.client}
+              </CardDescription>
+            </div>
           </div>
         </div>
       </CardHeader>
@@ -60,6 +72,18 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             ))}
           </div>
         </div>
+
+        {/* View Details Button */}
+        <Button
+          variant="outline"
+          className="w-full rounded-xl group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+          asChild
+        >
+          <Link to={`/projects/${project.id}`}>
+            View Details
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
       </CardContent>
     </Card>
   );

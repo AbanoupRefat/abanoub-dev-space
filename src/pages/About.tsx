@@ -113,13 +113,16 @@ const About = () => {
             <Button
               size="lg"
               className="rounded-xl bg-gradient-primary hover:opacity-90 transition-opacity"
-              onClick={() => {
-                // In a real scenario, this would download a PDF
-                alert("CV download would start here");
-              }}
+              asChild
             >
-              <Download className="mr-2 h-5 w-5" />
-              Download CV
+              <a
+                href="https://docs.google.com/document/d/1bZbjmW6df-frtfODZQXVgKl35Xa8rx6X/edit?usp=sharing&ouid=111859888948996290145&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Download CV
+              </a>
             </Button>
           </div>
         </div>
