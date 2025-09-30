@@ -4,12 +4,15 @@ import { Button } from "./ui/button";
 import { Project } from "@/data/projects";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="group overflow-hidden rounded-2xl border-border/50 bg-card hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
       {/* Project Image Placeholder */}
@@ -80,7 +83,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           asChild
         >
           <Link to={`/projects/${project.id}`}>
-            View Details
+            {t("projects.viewDetails")}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

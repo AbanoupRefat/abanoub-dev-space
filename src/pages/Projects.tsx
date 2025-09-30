@@ -3,8 +3,10 @@ import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Monitor, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Projects = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<"all" | "desktop" | "web">("all");
 
   const desktopProjects = projects.filter((p) => p.category === "desktop");
@@ -17,10 +19,10 @@ const Projects = () => {
         {/* Header */}
         <div className="text-center mb-12 space-y-4 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold">
-            My <span className="bg-gradient-primary bg-clip-text text-transparent">Projects</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">{t("projects.title")}</span>
           </h1>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
-            A collection of desktop applications and web solutions I've built for clients across different industries
+            {t("projects.subtitle")}
           </p>
         </div>
 
@@ -28,15 +30,15 @@ const Projects = () => {
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="space-y-8">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 rounded-xl h-12">
             <TabsTrigger value="all" className="rounded-lg">
-              All Projects
+              {t("projects.all")}
             </TabsTrigger>
             <TabsTrigger value="desktop" className="rounded-lg">
               <Monitor className="h-4 w-4 mr-2" />
-              Desktop
+              {t("projects.desktop")}
             </TabsTrigger>
             <TabsTrigger value="web" className="rounded-lg">
               <Globe className="h-4 w-4 mr-2" />
-              Web
+              {t("projects.web")}
             </TabsTrigger>
           </TabsList>
 
@@ -45,7 +47,7 @@ const Projects = () => {
             <div className="space-y-6">
               <h2 className="text-2xl font-bold flex items-center gap-2">
                 <Monitor className="h-6 w-6 text-primary" />
-                Desktop Applications
+                {t("projects.desktopApps")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {desktopProjects.map((project, index) => (
@@ -64,7 +66,7 @@ const Projects = () => {
             <div className="space-y-6 pt-8">
               <h2 className="text-2xl font-bold flex items-center gap-2">
                 <Globe className="h-6 w-6 text-primary" />
-                Web Applications
+                {t("projects.webApps")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {webProjects.map((project, index) => (

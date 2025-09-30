@@ -1,23 +1,26 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin, Github, MessageCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
+  
   const contactMethods = [
     {
       icon: Linkedin,
-      label: "LinkedIn",
+      label: t("contact.linkedin"),
       value: "linkedin.com/in/abanoubrefat",
       href: "https://www.linkedin.com/in/abanoubrefat",
     },
     {
       icon: Github,
-      label: "GitHub",
+      label: t("contact.github"),
       value: "github.com/AbanoupRefat",
       href: "https://github.com/AbanoupRefat",
     },
     {
       icon: MessageCircle,
-      label: "WhatsApp",
+      label: t("contact.whatsapp"),
       value: "+20 101 774 7943",
       href: "https://wa.me/201017747943",
     },
@@ -29,10 +32,10 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-12 space-y-4 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold">
-            Get In <span className="bg-gradient-primary bg-clip-text text-transparent">Touch</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">{t("contact.title")}</span>
           </h1>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
-            Have a project in mind? Let's discuss how I can help bring your ideas to life
+            {t("contact.subtitle")}
           </p>
         </div>
 
@@ -40,7 +43,7 @@ const Contact = () => {
           {/* Contact Information */}
           <Card className="rounded-2xl border-border/50 animate-fade-in-up">
               <CardContent className="p-8 space-y-6">
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+                <h2 className="text-2xl font-bold mb-6">{t("contact.directContact")}</h2>
                 
                 <div className="space-y-4">
                   {contactMethods.map((method, index) => (
@@ -71,11 +74,9 @@ const Contact = () => {
 
           <Card className="rounded-2xl border-border/50 bg-gradient-to-br from-primary/5 to-accent/5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
               <CardContent className="p-8 space-y-4">
-                <h3 className="text-xl font-bold">Let's Build Something Great</h3>
+                <h3 className="text-xl font-bold">{t("about.getInTouch")}</h3>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  Whether you need a custom desktop application to streamline your business operations 
-                  or a modern web platform to reach your customers, I'm here to help. Let's discuss your 
-                  project and create something amazing together.
+                  {t("contact.subtitle")}
                 </p>
               </CardContent>
             </Card>

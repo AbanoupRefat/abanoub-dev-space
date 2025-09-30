@@ -4,8 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProjectDetail = () => {
+  const { t } = useLanguage();
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
 
@@ -17,7 +19,7 @@ const ProjectDetail = () => {
           <Button asChild>
             <Link to="/projects">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Projects
+              {t("projectDetail.backToProjects")}
             </Link>
           </Button>
         </div>
@@ -36,7 +38,7 @@ const ProjectDetail = () => {
         >
           <Link to="/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Projects
+            {t("projectDetail.backToProjects")}
           </Link>
         </Button>
 
@@ -75,7 +77,7 @@ const ProjectDetail = () => {
           <Card className="rounded-2xl border-border/50 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             <CardContent className="p-8 space-y-6">
               <div>
-                <h2 className="text-2xl font-bold mb-4">About This Project</h2>
+                <h2 className="text-2xl font-bold mb-4">{t("projectDetail.overview")}</h2>
                 <p className="text-foreground/80 leading-relaxed">
                   {project.description}
                 </p>
@@ -83,7 +85,7 @@ const ProjectDetail = () => {
 
               {/* Key Features */}
               <div>
-                <h3 className="text-xl font-bold mb-4">Key Features</h3>
+                <h3 className="text-xl font-bold mb-4">{t("projectDetail.features")}</h3>
                 <ul className="space-y-3">
                   {project.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -96,7 +98,7 @@ const ProjectDetail = () => {
 
               {/* Tech Stack */}
               <div>
-                <h3 className="text-xl font-bold mb-4">Technology Stack</h3>
+                <h3 className="text-xl font-bold mb-4">{t("projectDetail.techStack")}</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.techStack.map((tech) => (
                     <Badge

@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Code2, Languages } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
   const location = useLocation();
+  const { language, toggleLanguage, t } = useLanguage();
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -19,11 +21,11 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/projects", label: "Projects" },
-    { path: "/skills", label: "Skills" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
+    { path: "/", label: t("nav.home") },
+    { path: "/projects", label: t("nav.projects") },
+    { path: "/skills", label: t("nav.skills") },
+    { path: "/about", label: t("nav.about") },
+    { path: "/contact", label: t("nav.contact") },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -33,8 +35,10 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            AR
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="p-2 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform">
+              <Code2 className="h-6 w-6 text-white" />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -52,8 +56,18 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
+          {/* Language, Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLanguage}
+              className="rounded-full"
+              title={language === "en" ? "العربية" : "English"}
+            >
+              <Languages className="h-5 w-5" />
+            </Button>
+
             <Button
               variant="ghost"
               size="icon"

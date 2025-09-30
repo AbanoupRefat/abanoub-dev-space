@@ -2,6 +2,7 @@ import { skills, skillCategories } from "@/data/skills";
 import SkillBadge from "@/components/SkillBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Code, Layers, Database, Wrench } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const categoryIcons = {
   Languages: Code,
@@ -11,16 +12,18 @@ const categoryIcons = {
 };
 
 const Skills = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 space-y-4 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold">
-            Technical <span className="bg-gradient-primary bg-clip-text text-transparent">Skills</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">{t("skills.title")}</span>
           </h1>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
-            A comprehensive toolkit for building robust desktop applications and modern web experiences
+            {t("skills.subtitle")}
           </p>
         </div>
 
@@ -65,9 +68,9 @@ const Skills = () => {
         <div className="mt-16 max-w-3xl mx-auto">
           <Card className="rounded-2xl border-border/50 bg-gradient-to-br from-primary/5 to-accent/5 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <CardContent className="p-8 text-center space-y-4">
-              <h3 className="text-2xl font-bold">Always Learning</h3>
+              <h3 className="text-2xl font-bold">{t("skills.learning")}</h3>
               <p className="text-foreground/70 leading-relaxed">
-                Technology evolves rapidly, and so do I. I'm constantly exploring new tools, frameworks, and best practices to deliver cutting-edge solutions. Currently diving deeper into cloud architectures and AI integration.
+                {t("skills.learningDesc")}
               </p>
             </CardContent>
           </Card>
