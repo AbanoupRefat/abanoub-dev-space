@@ -14,6 +14,20 @@ export interface Project {
 export const projects: Project[] = [
   // Desktop Apps
   {
+    id: "cwa-recorder",
+    title: "Code With Abanoub Recorder",
+    client: "Code With Abanoub",
+    description: "Windows desktop screen recorder built for recording programming lessons, with a record, review and mark workflow and a built-in export pipeline.",
+    features: [
+      "Drives a bundled OBS Studio engine through obs-websocket",
+      "Record, review and mark workflow for lesson takes",
+      "Rust FFmpeg export pipeline",
+      "Native Windows capture path (in active development)"
+    ],
+    techStack: ["Tauri v2", "Rust", "React", "TypeScript", "FFmpeg", "OBS"],
+    category: "desktop"
+  },
+  {
     id: "jewellery-management",
     title: "Jewellery Management System",
     client: "Fady El Raheb",
@@ -98,6 +112,34 @@ export const projects: Project[] = [
     category: "desktop"
   },
   // Web Apps
+  {
+    id: "da3wa",
+    title: "Da3wa Interactive Wedding Invitations",
+    client: "Da3wa",
+    description: "Reusable, config-driven wedding invitation web app, re-skinned per couple, with heavy animation and a scroll-snap storytelling flow.",
+    features: [
+      "Interactive gate opener with hinge physics",
+      "Countdown with calendar (.ics) download",
+      "Draggable story timeline and guest book",
+      "Location page with Google Maps and per-client theming"
+    ],
+    techStack: ["React", "Vite", "GSAP", "Howler.js", "Vercel"],
+    category: "web"
+  },
+  {
+    id: "barber-queue",
+    title: "Barber Queue & Reservation System",
+    client: "Premium Barbershop",
+    description: "Walk-in friendly queue and reservation system for a multi-barber shop, with a customer web app, an admin queue screen and a desktop reporter for receipts and bonuses.",
+    features: [
+      "Live queue tracking with ETA based on a rolling average of real service times",
+      "Admin controls to block reservations, reorder the queue and reserve manually",
+      "Receipt entry, daily reports, expenses and bonus configuration",
+      "Realtime updates across customer and admin screens"
+    ],
+    techStack: ["Supabase", "PostgreSQL", "Realtime"],
+    category: "web"
+  },
   {
     id: "coffeemaker-ecommerce",
     title: "CoffeeMaker E-commerce Platform",
