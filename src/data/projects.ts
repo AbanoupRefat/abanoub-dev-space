@@ -129,7 +129,7 @@ export const projects: Project[] = [
   {
     id: "barber-queue",
     title: "Barber Queue & Reservation System",
-    client: "Premium Barbershop",
+    client: "Private Client",
     description: "Walk-in friendly queue and reservation system for a multi-barber shop, with a customer web app, an admin queue screen and a desktop reporter for receipts and bonuses.",
     features: [
       "Live queue tracking with ETA based on a rolling average of real service times",
