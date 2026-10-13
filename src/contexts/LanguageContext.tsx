@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 type Language = "en" | "ar";
 
@@ -40,6 +40,7 @@ const translations = {
     "projects.desktopApps": "Desktop Applications",
     "projects.webApps": "Web Applications",
     "projects.viewDetails": "View Details",
+    "projects.application": "Application",
     
     // Project Detail
     "projectDetail.overview": "Project Overview",
@@ -79,6 +80,40 @@ const translations = {
     "contact.linkedin": "LinkedIn",
     "contact.github": "GitHub",
     "contact.whatsapp": "WhatsApp",
+
+    // Projects Translations
+    "project.jewellery-management.title": "Jewellery Management System",
+    "project.jewellery-management.desc": "Comprehensive management system for jewelry inventory, sales, and customer tracking with advanced reporting capabilities.",
+    
+    "project.car-spare-parts.title": "Car Spare Parts Management",
+    "project.car-spare-parts.desc": "Complete inventory and sales management solution for automotive spare parts with barcode integration.",
+    
+    "project.cement-blocks-inventory.title": "Cement & Blocks Inventory System",
+    "project.cement-blocks-inventory.desc": "Specialized inventory system for construction materials with weight-based calculations and delivery tracking.",
+    
+    "project.skincare-system.title": "Multi-Branch Skincare System",
+    "project.skincare-system.desc": "Cloud-based POS and inventory system for multiple skincare clinic branches with real-time synchronization.",
+    
+    "project.coffeemaker-stock.title": "Stock Management System",
+    "project.coffeemaker-stock.desc": "Lightweight stock management system for e-commerce inventory with seamless online store integration.",
+    
+    "project.mobile-store-system.title": "Mobile Store Stock System",
+    "project.mobile-store-system.desc": "Specialized system for mobile phone retail with IMEI tracking and warranty management.",
+    
+    "project.coffeemaker-ecommerce.title": "CoffeeMaker E-commerce Platform",
+    "project.coffeemaker-ecommerce.desc": "Full-featured e-commerce website for premium coffee products with modern design and smooth user experience.",
+    
+    "project.roots-bamboo.title": "Roots | بذور Landing Page",
+    "project.roots-bamboo.desc": "Beautiful, eco-friendly landing page for bamboo straws brand with bilingual support and modern animations.",
+    
+    "project.da3wa.title": "Da3wa Interactive Wedding Invitations",
+    "project.da3wa.desc": "Reusable, config-driven wedding invitation web app, re-skinned per couple, with heavy animation and a scroll-snap storytelling flow.",
+    
+    "project.barber-queue.title": "Barber Queue & Reservation System",
+    "project.barber-queue.desc": "Walk-in friendly queue and reservation system for a multi-barber shop, with a customer web app, an admin queue screen and a desktop reporter for receipts and bonuses.",
+    
+    "project.cwa-recorder.title": "Code With Abanoub Recorder",
+    "project.cwa-recorder.desc": "Windows desktop screen recorder built for recording programming lessons, with a record, review and mark workflow and a built-in export pipeline.",
   },
   ar: {
     // Navigation
@@ -109,6 +144,7 @@ const translations = {
     "projects.desktopApps": "تطبيقات سطح المكتب",
     "projects.webApps": "تطبيقات الويب",
     "projects.viewDetails": "عرض التفاصيل",
+    "projects.application": "تطبيق",
     
     // Project Detail
     "projectDetail.overview": "نظرة عامة على المشروع",
@@ -148,19 +184,56 @@ const translations = {
     "contact.linkedin": "لينكدإن",
     "contact.github": "جيت هاب",
     "contact.whatsapp": "واتساب",
+
+    // Projects Translations
+    "project.jewellery-management.title": "نظام إدارة المجوهرات",
+    "project.jewellery-management.desc": "نظام إدارة شامل لمخزون المجوهرات والمبيعات وتتبع العملاء مع قدرات إعداد التقارير المتقدمة.",
+    
+    "project.car-spare-parts.title": "إدارة قطع غيار السيارات",
+    "project.car-spare-parts.desc": "حل إدارة مخزون وبيع كامل لقطع غيار السيارات مع تكامل مسح الرموز الشريطية.",
+    
+    "project.cement-blocks-inventory.title": "نظام مخزون الأسمنت والكتل",
+    "project.cement-blocks-inventory.desc": "نظام متخصص لمخزون مواد البناء مع حسابات قائمة على الوزن وتتبع التسليم.",
+    
+    "project.skincare-system.title": "نظام إدارة عيادات العناية بالبشرة متعددة الفروع",
+    "project.skincare-system.desc": "نظام نقطة بيع وإدارة مخزون قائم على السحابة لفروع عيادات العناية بالبشرة مع المزامنة في الوقت الفعلي.",
+    
+    "project.coffeemaker-stock.title": "نظام إدارة المخزون",
+    "project.coffeemaker-stock.desc": "نظام إدارة مخزون خفيف الوزن للتجارة الإلكترونية مع تكامل سلس للمتجر عبر الإنترنت.",
+    
+    "project.mobile-store-system.title": "نظام مخزون متجر الهاتف المحمول",
+    "project.mobile-store-system.desc": "نظام متخصص لتجارة الهواتف الذكية مع تتبع IMEI وإدارة الضمان.",
+    
+    "project.coffeemaker-ecommerce.title": "منصة التجارة الإلكترونية CoffeeMaker",
+    "project.coffeemaker-ecommerce.desc": "موقع التجارة الإلكترونية الكامل لمنتجات القهوة الفاخرة بتصميم حديث وتجربة مستخدم سلسة.",
+    
+    "project.roots-bamboo.title": "صفحة هبوط Roots | بذور",
+    "project.roots-bamboo.desc": "صفحة هبوط جميلة وصديقة للبيئة لعلامة تجارية لقش الخيزران مع دعم ثنائي اللغة والرسوم المتحركة الحديثة.",
+    
+    "project.da3wa.title": "دعوات الزفاف التفاعلية Da3wa",
+    "project.da3wa.desc": "تطبيق ويب قابل لإعادة الاستخدام وموجه بالتكوين لدعوات الزفاف، مع إعادة تصميم حسب الزوجين، وميزات رسوم متحركة ثقيلة وتدفق سرد قصة.",
+    
+    "project.barber-queue.title": "نظام طابور وحجز الحلاقة",
+    "project.barber-queue.desc": "نظام طابور وحجز صديق للعملاء الجدد لمتجر حلاقة متعدد الحلاقين، مع تطبيق ويب للعملاء وشاشة طابور الإدارة ومراجع سطح المكتب للإيصالات والمكافآت.",
+    
+    "project.cwa-recorder.title": "مسجل Code With Abanoub",
+    "project.cwa-recorder.desc": "تطبيق تسجيل شاشة سطح المكتب المدمج لتسجيل دروس البرمجة، مع سير عمل التسجيل والمراجعة والعلامة وخط أنابيب التصدير المدمج.",
   },
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>(() => {
+    // Detect device language on initial load
+    const browserLang = navigator.language.split("-")[0];
+    return (browserLang === "ar" ? "ar" : "en") as Language;
+  });
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "ar" : "en"));
-    document.documentElement.dir = language === "en" ? "rtl" : "ltr";
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations.en] || key;
+    return translations[language][key as keyof typeof translations["en"]] || key;
   };
 
   return (
@@ -173,7 +246,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
+    throw new Error("useLanguage must be used within LanguageProvider");
   }
   return context;
 };

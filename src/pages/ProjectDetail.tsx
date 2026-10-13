@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProjectDetail = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
 
@@ -26,6 +26,10 @@ const ProjectDetail = () => {
       </div>
     );
   }
+
+  // Get translated content
+  const translatedTitle = t(`project.${project.id}.title`) || project.title;
+  const translatedDesc = t(`project.${project.id}.desc`) || project.description;
 
   return (
     <div className="min-h-screen py-16 md:py-24">
@@ -54,24 +58,34 @@ const ProjectDetail = () => {
                 />
               )}
               <h1 className="text-4xl md:text-5xl font-bold">
-                {project.title}
+                {translatedTitle}
               </h1>
             </div>
             <p className="text-xl text-foreground/70">{project.client}</p>
           </div>
 
           {/* Project Images */}
-          {project.images && project.images.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up">
-              {project.images.map((image, index) => (
-                <Card key={index} className="overflow-hidden rounded-2xl border-border/50">
-                  <div className="aspect-video bg-gradient-primary opacity-10">
-                    {/* Image placeholder - in production, these would be actual images */}
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
+          {(() => {
+            const gallery = project.images?.length
+              ? project.images
+              : project.image
+              ? [project.image]
+              : [];
+            return gallery.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up">
+                {gallery.map((image, index) => (
+                  <Card key={index} className="overflow-hidden rounded-2xl border-border/50">
+                    <img
+                      src={image}
+                      alt={`${translatedTitle} screenshot ${index + 1}`}
+                      loading="lazy"
+                      className="aspect-video w-full object-cover"
+                    />
+                  </Card>
+                ))}
+              </div>
+            ) : null;
+          })()}
 
           {/* Project Description */}
           <Card className="rounded-2xl border-border/50 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
@@ -79,7 +93,7 @@ const ProjectDetail = () => {
               <div>
                 <h2 className="text-2xl font-bold mb-4">{t("projectDetail.overview")}</h2>
                 <p className="text-foreground/80 leading-relaxed">
-                  {project.description}
+                  {translatedDesc}
                 </p>
               </div>
 
@@ -118,7 +132,7 @@ const ProjectDetail = () => {
                   variant="outline"
                   className="text-sm font-medium px-4 py-2"
                 >
-                  {project.category === "desktop" ? "Desktop Application" : "Web Application"}
+                  {project.category === "desktop" ? t("projects.desktop") : t("projects.web")} {t("projects.application")}
                 </Badge>
               </div>
             </CardContent>
