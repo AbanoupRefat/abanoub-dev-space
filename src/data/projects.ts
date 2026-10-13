@@ -25,6 +25,7 @@ export const projects: Project[] = [
       "Native Windows capture path (in active development)"
     ],
     techStack: ["Tauri v2", "Rust", "React", "TypeScript", "FFmpeg", "OBS"],
+    image: "/projects/cwa-recorder.png",
     category: "desktop"
   },
   {
@@ -39,6 +40,7 @@ export const projects: Project[] = [
       "Real-time reporting and analytics"
     ],
     techStack: ["C#", "WinForms", "SQL Server", "Crystal Reports"],
+    image: "/projects/jewellery.png",
     category: "desktop"
   },
   {
@@ -53,6 +55,7 @@ export const projects: Project[] = [
       "Sales and profit tracking"
     ],
     techStack: ["C#", "WinForms", "SQL Server"],
+    image: "/projects/car-parts.png",
     category: "desktop"
   },
   {
@@ -67,6 +70,7 @@ export const projects: Project[] = [
       "Production monitoring"
     ],
     techStack: ["C#", "WinForms", "SQLite"],
+    image: "/projects/cement.png",
     category: "desktop"
   },
   {
@@ -81,6 +85,7 @@ export const projects: Project[] = [
       "Employee performance tracking"
     ],
     techStack: ["C#", "WinForms", "Supabase", "PostgreSQL"],
+    image: "/projects/skincare.png",
     category: "desktop"
   },
   {
@@ -95,6 +100,7 @@ export const projects: Project[] = [
       "Supplier management"
     ],
     techStack: ["C#", "WinForms", "SQLite"],
+    image: "/projects/stock.png",
     category: "desktop"
   },
   {
@@ -124,6 +130,7 @@ export const projects: Project[] = [
       "Location page with Google Maps and per-client theming"
     ],
     techStack: ["React", "Vite", "GSAP", "Howler.js", "Vercel"],
+    image: "/projects/da3wa.png",
     category: "web"
   },
   {
@@ -138,6 +145,7 @@ export const projects: Project[] = [
       "Realtime updates across customer and admin screens"
     ],
     techStack: ["Supabase", "PostgreSQL", "Realtime"],
+    image: "/projects/barber-queue.png",
     category: "web"
   },
   {
@@ -152,6 +160,7 @@ export const projects: Project[] = [
       "Customer accounts and order history"
     ],
     techStack: ["React", "Tailwind CSS", "Supabase", "TypeScript"],
+    image: "/projects/coffeemaker.png",
     category: "web"
   },
   {
@@ -166,6 +175,7 @@ export const projects: Project[] = [
       "Responsive design"
     ],
     techStack: ["React", "Tailwind CSS", "TypeScript"],
+    image: "/projects/roots.png",
     category: "web"
   }
 ];
