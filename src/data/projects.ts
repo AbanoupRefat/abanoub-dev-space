@@ -152,8 +152,7 @@ export const projects: Project[] = [
       "Customer accounts and order history"
     ],
     techStack: ["React", "Tailwind CSS", "Supabase", "TypeScript"],
-    category: "web",
-    image: "https://coffeemakereg.com"
+    category: "web"
   },
   {
     id: "roots-bamboo",

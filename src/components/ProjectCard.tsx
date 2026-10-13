@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Project } from "@/data/projects";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProjectCardProps {
@@ -12,11 +13,22 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { t } = useLanguage();
+  const [imageFailed, setImageFailed] = useState(false);
   
   return (
     <Card className="group overflow-hidden rounded-2xl border-border/50 bg-card hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-      {/* Project Image Placeholder */}
-      <div className="aspect-video bg-gradient-primary opacity-10 group-hover:opacity-20 transition-opacity" />
+      {/* Project thumbnail (falls back to the gradient placeholder) */}
+      {project.image && !imageFailed ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          onError={() => setImageFailed(true)}
+          className="aspect-video w-full object-cover"
+        />
+      ) : (
+        <div className="aspect-video bg-gradient-primary opacity-10 group-hover:opacity-20 transition-opacity" />
+      )}
       
       <CardHeader>
         <div className="flex items-start justify-between gap-4">

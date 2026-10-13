@@ -61,17 +61,27 @@ const ProjectDetail = () => {
           </div>
 
           {/* Project Images */}
-          {project.images && project.images.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up">
-              {project.images.map((image, index) => (
-                <Card key={index} className="overflow-hidden rounded-2xl border-border/50">
-                  <div className="aspect-video bg-gradient-primary opacity-10">
-                    {/* Image placeholder - in production, these would be actual images */}
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
+          {(() => {
+            const gallery = project.images?.length
+              ? project.images
+              : project.image
+              ? [project.image]
+              : [];
+            return gallery.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up">
+                {gallery.map((image, index) => (
+                  <Card key={index} className="overflow-hidden rounded-2xl border-border/50">
+                    <img
+                      src={image}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      loading="lazy"
+                      className="aspect-video w-full object-cover"
+                    />
+                  </Card>
+                ))}
+              </div>
+            ) : null;
+          })()}
 
           {/* Project Description */}
           <Card className="rounded-2xl border-border/50 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
